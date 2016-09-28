@@ -13,6 +13,7 @@ var cities = new LList();
 var gz;
 var mo;
 
+// The expressway passes through the following cities:
 cities.append("Beijing");
 cities.append("Baoding, Hebei");
 cities.append("Shijiazhuang, Hebei");

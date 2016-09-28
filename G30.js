@@ -11,6 +11,7 @@ const LList = require('./lib/linked_list');
 
 var cities = new LList();
 
+// The expressway passes through the following cities:
 cities.append("Lianyungang, Jiangsu");
 cities.append("Xuzhou, Jiangsu");
 cities.append("Kaifeng, Henan");
