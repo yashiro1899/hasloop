@@ -16,7 +16,7 @@
 'use strict';
 
 
-const LList = require('./lib/linked_list');
+const LList = require('../lib/linked_list');
 
 var cities = new LList();
 
