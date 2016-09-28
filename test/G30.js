@@ -1,6 +1,15 @@
 /**
  * G30 Lianyungang–Khorgas Expressway
- * The Lianyungang–Khorgas Expressway (Chinese: 连云港－霍尔果斯高速公路), commonly referred to as the Lianhuo Expressway (Chinese: 连霍高速公路), is 4,243-kilometre-long expressway (2,636 mi) in the People's Republic of China that connects the cities of Lianyungang, in the province of Jiangsu, and Khorgas, in the autonomous region of Xinjiang, on the border with Kazakhstan. At Khorgas, there is a border crossing into Kazakhstan. The expressway is the longest contiguous expressway in China with a single numeric designation, stretching across the country from the Yellow Sea on the east cost to the Kazakhstan border in the west. It passes through the provinces of Jiangsu, Anhui, Henan, Shaanxi, Gansu, and Xinjiang.
+ * The Lianyungang–Khorgas Expressway (Chinese: 连云港－霍尔果斯高速公路),
+ * commonly referred to as the Lianhuo Expressway (Chinese: 连霍高速公路),
+ * is 4,243-kilometre-long expressway (2,636 mi) in the People's Republic
+ * of China that connects the cities of Lianyungang, in the province of Jiangsu,
+ * and Khorgas, in the autonomous region of Xinjiang, on the border with
+ * Kazakhstan. At Khorgas, there is a border crossing into Kazakhstan.
+ * The expressway is the longest contiguous expressway in China with a single
+ * numeric designation, stretching across the country from the Yellow Sea
+ * on the east cost to the Kazakhstan border in the west. It passes through
+ * the provinces of Jiangsu, Anhui, Henan, Shaanxi, Gansu, and Xinjiang.
  *
  * From Wikipedia, the free encyclopedia
  */
