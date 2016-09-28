@@ -12,4 +12,4 @@ If a linked list has a cycle:
 * Iterating through the malformed linked list will yield all nodes in the loop multiple times
 
 
-A malformed linked list with a loop causes iteration over the list to fail because the iteration will never reach the end of the list. Therefore, it is desirable to be able to detect that a linked list is malformed before trying an iteration. This repository is some of various algorithms to detect a loop in a singly linked list.
+A malformed linked list with a loop causes iteration over the list to fail because the iteration will never reach the end of the list. Therefore, it is desirable to be able to detect that a linked list is malformed before trying an iteration. This repository is a collection of various algorithms to detect a loop in a singly linked list.
