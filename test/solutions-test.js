@@ -221,16 +221,20 @@ describe("Reverse the list", function () {
  * must have been seen twice and there is a cycle.
  *
  *
- * Node current = head;
- * int min = &current, int max = &current;
- * int nodes = 0;
- * while (current = current.next) {
- *     nodes++;
- *     if (&current < min) min = &current;
- *     if (&current > max) max = &current;
- *     if (max - min < nodes) return true;
+ * bool hasloop(node_t * head) {
+ *     node_t * current = head;
+ *     uintptr_t min =  (uintptr_t) current;
+ *     uintptr_t max = min + 0x10;
+ *     uintptr_t nodes = 0;
+ *     while (current != NULL) {
+ *         nodes++;
+ *         if ((uintptr_t) current < min) min = (uintptr_t) current;
+ *         if ((uintptr_t) current > max) max = (uintptr_t) current;
+ *         if (max - min < nodes) return true;
+ *         current = current->next;
+ *     }
+ *     return false;
  * }
- * return false;
  *
  *
  * This algorithm relies on being able to see memory address information.

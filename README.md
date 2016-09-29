@@ -149,16 +149,20 @@ O(n) time complexity in the amount of memory on the computer
 Some programming languages allow you to see meta information about each node — the memory address at which it is allocated. Because each node has a unique numeric address, it is possible to use this information to detect cycles. For this algorithm, keep track of the minimum memory address seen, the maximum memory address seen, and the number of nodes seen. If more nodes have been seen than can fit in the address space then some node must have been seen twice and there is a cycle.
 
 ```c
-Node current = head;
-int min = &current, int max = &current;
-int nodes = 0;
-while (current = current.next) {
-    nodes++;
-    if (&current < min) min = &current;
-    if (&current > max) max = &current;
-    if (max - min < nodes) return true;
+bool hasloop(node_t * head) {
+    node_t * current = head;
+    uintptr_t min =  (uintptr_t) current;
+    uintptr_t max = min + 0x10;
+    uintptr_t nodes = 0;
+    while (current != NULL) {
+        nodes++;
+        if ((uintptr_t) current < min) min = (uintptr_t) current;
+        if ((uintptr_t) current > max) max = (uintptr_t) current;
+        if (max - min < nodes) return true;
+        current = current->next;
+    }
+    return false;
 }
-return false;
 ```
 
 This algorithm relies on being able to see memory address information. This is not possible to implement in some programming languages such as Javascript that do not make this information available. So I didn't implement this algorithm. It is likely that the entire list will be allocated close together in memory. In such a case the implementation will run close to the running time of the length of the list. However, if the nodes in the list are allocated over a large memory space, the runtime of this algorithm could be much greater than some of the best solutions.
