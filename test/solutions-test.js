@@ -1,10 +1,36 @@
 /*global
-    describe it before
+    describe it before after
 */
-const G4 = require("./G4"); // a linked list with loop
-const G30 = require("./G30"); // a linked list without loop
-const G98 = require("./G98"); // a linked linked with full loop where the last node links to the first
+var G4 = require("./G4"); // a linked list with loop
+var G30 = require("./G30"); // a linked list without loop
+var G98 = require("./G98"); // a linked linked with full loop where the last node links to the first
 var hasloop;
+
+function reload() {
+    "use strict";
+    delete require.cache[require.resolve("./G4")];
+    delete require.cache[require.resolve("./G30")];
+    delete require.cache[require.resolve("./G98")];
+    G4 = require("./G4");
+    G30 = require("./G30");
+    G98 = require("./G98");
+}
+
+function its() {
+    "use strict";
+    it("should return true when loop is present", function () {
+        hasloop(G4.head)
+            .should.be.equal(true);
+    });
+    it("should return true when full loop is present", function () {
+        hasloop(G98.head)
+            .should.be.equal(true);
+    });
+    it("should return false when loop is not present", function () {
+        hasloop(G30.head)
+            .should.be.equal(false);
+    });
+}
 
 /**
  * Mark Each Node
@@ -28,18 +54,8 @@ describe("Mark Each Node", function () {
             return false;
         };
     });
-    it("should return true when loop is present", function () {
-        hasloop(G4.head)
-            .should.be.equal(true);
-    });
-    it("should return false when loop is not present", function () {
-        hasloop(G30.head)
-            .should.be.equal(false);
-    });
-    it("should return true when full loop is present", function () {
-        hasloop(G98.head)
-            .should.be.equal(true);
-    });
+    its();
+    after(reload);
 });
 
 /**
@@ -71,18 +87,7 @@ describe("Keep a hash set of all nodes seen so far", function () {
             return false;
         };
     });
-    it("should return true when loop is present", function () {
-        hasloop(G4.head)
-            .should.be.equal(true);
-    });
-    it("should return false when loop is not present", function () {
-        hasloop(G30.head)
-            .should.be.equal(false);
-    });
-    it("should return true when full loop is present", function () {
-        hasloop(G98.head)
-            .should.be.equal(true);
-    });
+    its();
 });
 
 /**
@@ -123,18 +128,8 @@ describe("Use a doubly linked list", function () {
             return false;
         };
     });
-    it("should return true when loop is present", function () {
-        hasloop(G4.head)
-            .should.be.equal(true);
-    });
-    it("should return false when loop is not present", function () {
-        hasloop(G30.head)
-            .should.be.equal(false);
-    });
-    it("should return true when full loop is present", function () {
-        hasloop(G98.head)
-            .should.be.equal(true);
-    });
+    its();
+    after(reload);
 });
 
 /**
@@ -170,16 +165,43 @@ describe("Check the Entire List So Far", function () {
             return false;
         };
     });
-    it("should return true when loop is present", function () {
-        hasloop(G4.head)
-            .should.be.equal(true);
+    its();
+});
+
+/**
+ * Reverse the list
+ *
+ * O(n) time complexity
+ *
+ * If you reverse the list, and remember the inital node, you will
+ * know that there is a cycle if you get back to the first node.
+ * While efficient, this solution changes the list. Reversing the
+ * list twice would put the list back in its initial state, however
+ * this solution is not appropriate for multi-threaded applications.
+ * In some cases there may not be a way to modify nodes. Since
+ * changing the nodes is not needed to get the answer, this solution
+ * is not recommended.
+ */
+describe("Check the Entire List So Far", function () {
+    "use strict";
+    before(function () {
+        hasloop = function (head) {
+            var previous = null;
+            var current = head;
+            var next;
+
+            if (!current.next) {
+                return false;
+            }
+            while (current) {
+                next = current.next;
+                current.next = previous;
+                previous = current;
+                current = next;
+            }
+            return (previous === head);
+        };
     });
-    it("should return false when loop is not present", function () {
-        hasloop(G30.head)
-            .should.be.equal(false);
-    });
-    it("should return true when full loop is present", function () {
-        hasloop(G98.head)
-            .should.be.equal(true);
-    });
+    its();
+    after(reload);
 });
