@@ -235,12 +235,12 @@ describe("Reverse the list", function () {
  *
  * This algorithm relies on being able to see memomory address information.
  * This is not possible to implement in some programming languages such as
- * Javascript that do not make this information available. It is likely that
- * the entire list will be allocated close together in memory. In such a case
- * the implementation will run close to the running time of the length of the
- * list. However, if the nodes in the list are allocated over a large memory
- * space, the runtime of this algorithm could be much greater than some of
- * the best solutions.
+ * Javascript that do not make this information available. So I didn't
+ * implement this algorithm. It is likely that the entire list will be allocated
+ * close together in memory. In such a case the implementation will run close
+ * to the running time of the length of the list. However, if the nodes in the
+ * list are allocated over a large memory space, the runtime of this algorithm
+ * could be much greater than some of the best solutions.
  */
 
 /**
