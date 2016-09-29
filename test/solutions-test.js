@@ -1,9 +1,9 @@
 /*global
     describe it before after
 */
-var G4 = require("./G4"); // a linked list with loop
-var G30 = require("./G30"); // a linked list without loop
-var G98 = require("./G98"); // a linked linked with full loop where the last node links to the first
+var G4 = require("./G4");   // with loop
+var G30 = require("./G30"); // without loop
+var G98 = require("./G98"); // with full loop where the last node links to the first
 var hasloop;
 
 function reload() {
@@ -182,7 +182,7 @@ describe("Check the Entire List So Far", function () {
  * changing the nodes is not needed to get the answer, this solution
  * is not recommended.
  */
-describe("Check the Entire List So Far", function () {
+describe("Reverse the list", function () {
     "use strict";
     before(function () {
         hasloop = function (head) {
@@ -205,3 +205,30 @@ describe("Check the Entire List So Far", function () {
     its();
     after(reload);
 });
+
+/**
+ * Use Memory Allocation Information
+ *
+ * O(n) time complexity in the amount of memory on the computer
+ *
+ * Some programming languages allow you to see meta information
+ * about each node — the memory address at which it is allocated.
+ * Because each node has a unique numeric address, it is possible
+ * to use this information to detect cycles. For this algorithm,
+ * keep track of the minimum memory address seen, the maximum
+ * memory address seen, and the number of nodes seen. If more nodes
+ * have been seen than can fit in the address space then some node
+ * must have been seen twice and there is a cycle.
+ *
+ *
+ * Node current = head;
+ * int min = &current, int max = &current;
+ * int nodes = 0;
+ * while (current = current.next) {
+ *     nodes++;
+ *     if (&current < min) min = &current;
+ *     if (&current > max) max = &current;
+ *     if (max - min < nodes) return true;
+ * }
+ * return false;
+ */
