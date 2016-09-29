@@ -2,7 +2,7 @@
  * G30 Lianyungang–Khorgas Expressway
  * The Lianyungang–Khorgas Expressway (Chinese: 连云港－霍尔果斯高速公路),
  * commonly referred to as the Lianhuo Expressway (Chinese: 连霍高速公路),
- * is 4,243-kilometre-long expressway (2,636 mi) in the People's Republic
+ * is 4,243-kilometre-long expressway (2,636 mi) in the People"s Republic
  * of China that connects the cities of Lianyungang, in the province of Jiangsu,
  * and Khorgas, in the autonomous region of Xinjiang, on the border with
  * Kazakhstan. At Khorgas, there is a border crossing into Kazakhstan.
@@ -13,10 +13,7 @@
  *
  * From Wikipedia, the free encyclopedia
  */
-'use strict';
-
-
-const LList = require('../lib/linked_list');
+const LList = require("../lib/linked_list");
 
 var cities = new LList();
 
