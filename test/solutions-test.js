@@ -3,6 +3,7 @@
 */
 const G4 = require("./G4"); // a linked list with loop
 const G30 = require("./G30"); // a linked list without loop
+const G98 = require("./G98"); // a linked linked with full loop where the last node links to the first
 var hasloop;
 
 /**
@@ -34,6 +35,10 @@ describe("Mark Each Node", function () {
     it("should return false when loop is not present", function () {
         hasloop(G30.head)
             .should.be.equal(false);
+    });
+    it("should return true when full loop is present", function () {
+        hasloop(G98.head)
+            .should.be.equal(true);
     });
 });
 
@@ -73,6 +78,10 @@ describe("Keep a hash set of all nodes seen so far", function () {
     it("should return false when loop is not present", function () {
         hasloop(G30.head)
             .should.be.equal(false);
+    });
+    it("should return true when full loop is present", function () {
+        hasloop(G98.head)
+            .should.be.equal(true);
     });
 });
 
@@ -122,6 +131,10 @@ describe("Use a doubly linked list", function () {
         hasloop(G30.head)
             .should.be.equal(false);
     });
+    it("should return true when full loop is present", function () {
+        hasloop(G98.head)
+            .should.be.equal(true);
+    });
 });
 
 /**
@@ -164,5 +177,9 @@ describe("Check the Entire List So Far", function () {
     it("should return false when loop is not present", function () {
         hasloop(G30.head)
             .should.be.equal(false);
+    });
+    it("should return true when full loop is present", function () {
+        hasloop(G98.head)
+            .should.be.equal(true);
     });
 });
