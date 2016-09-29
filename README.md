@@ -1,6 +1,6 @@
 # Finding a Loop in a Singly Linked List
 
-reference: [http://blog.ostermiller.org/find-loop-singly-linked-list](http://blog.ostermiller.org/find-loop-singly-linked-list 'reference')
+Reference: [http://blog.ostermiller.org/find-loop-singly-linked-list](http://blog.ostermiller.org/find-loop-singly-linked-list 'reference')
 
 Implements most of cases in the article above by Javascript.
 
@@ -67,7 +67,7 @@ hasloop = function (head) {
 
 O(n) time complexity
 
-Doubly linked lists make it easy to tell if there is a loop. If you encounter any node that doesn’t link to the last node you visited, you know that there are two nodes linking to that node. Because the back links could be initially messed up in some other way, this algorithm is only correct if you can trust the back links. Otherwise it is just a malformed doubly linked list finder. The singly linked list can even be converted into a doubly linked list with little additional work. Again this will require that we change the structure of the Node to accommodate a second link. Something that may not be possible in all cases. Usually a singly linked list is used because the amount of space to allocate for each node is at a premium.
+Doubly linked lists make it easy to tell if there is a loop. If you encounter any node that doesn't link to the last node you visited, you know that there are two nodes linking to that node. Because the back links could be initially messed up in some other way, this algorithm is only correct if you can trust the back links. Otherwise it is just a malformed doubly linked list finder. The singly linked list can even be converted into a doubly linked list with little additional work. Again this will require that we change the structure of the Node to accommodate a second link. Something that may not be possible in all cases. Usually a singly linked list is used because the amount of space to allocate for each node is at a premium.
 
 ```javascript
 hasloop = function (head) {
@@ -120,7 +120,7 @@ hasloop = function (head) {
 
 ### Reverse the list
 
-O(n) time complexity  If you reverse the list, and remember the inital node, you will know that there is a cycle if you get back to the first node. While efficient, this solution changes the list. Reversing the list twice would put the list back in its initial state, however this solution is not appropriate for multi-threaded applications. In some cases there may not be a way to modify nodes. Since changing the nodes is not needed to get the answer, this solution is not recommended.
+O(n) time complexity  If you reverse the list, and remember the initial node, you will know that there is a cycle if you get back to the first node. While efficient, this solution changes the list. Reversing the list twice would put the list back in its initial state, however this solution is not appropriate for multi-threaded applications. In some cases there may not be a way to modify nodes. Since changing the nodes is not needed to get the answer, this solution is not recommended.
 
 ```javascript
 hasloop = function (head) {
@@ -140,3 +140,85 @@ hasloop = function (head) {
     return (previous === head);
 };
 ```
+
+
+### Use Memory Allocation Information
+
+O(n) time complexity in the amount of memory on the computer
+
+Some programming languages allow you to see meta information about each node — the memory address at which it is allocated. Because each node has a unique numeric address, it is possible to use this information to detect cycles. For this algorithm, keep track of the minimum memory address seen, the maximum memory address seen, and the number of nodes seen. If more nodes have been seen than can fit in the address space then some node must have been seen twice and there is a cycle.
+
+```c
+Node current = head;
+int min = &current, int max = &current;
+int nodes = 0;
+while (current = current.next) {
+    nodes++;
+    if (&current < min) min = &current;
+    if (&current > max) max = &current;
+    if (max - min < nodes) return true;
+}
+return false;
+```
+
+This algorithm relies on being able to see memory address information. This is not possible to implement in some programming languages such as Javascript that do not make this information available. So I didn't implement this algorithm. It is likely that the entire list will be allocated close together in memory. In such a case the implementation will run close to the running time of the length of the list. However, if the nodes in the list are allocated over a large memory space, the runtime of this algorithm could be much greater than some of the best solutions.
+
+
+### Catch Larger and Larger Loops
+
+O(n) time complexity
+
+Always store some node to check. Occasionally reset this node to avoid the "Detect Only Full Loops" problem. When resetting it, double the amount of time before resetting it again.
+
+```javascript
+hasloop = function (head) {
+    var current = head;
+    var check = null;
+    var since = 0;
+    var sinceScale = 2;
+    do {
+        if (check === current) {
+            return true;
+        }
+        if (since >= sinceScale) {
+            check = current;
+            since = 0;
+            sinceScale *= 2;
+        }
+        since += 1;
+        current = current.next;
+    } while (current);
+    return false;
+};
+```
+
+This solution is O(n) because `sinceScale` grows linearly with the number of calls to next(). Once `sinceScale` is greater than the size of the loop, another n calls to next() may be required to detect the loop. This solution requires up to 3 traversals of the list.
+
+This solution was devised by Stephen Ostermiller and proven O(n) by Daniel Martin.
+
+
+### Catch Loops in Two Passes
+
+O(n) time complexity
+
+Simultaneously go through the list by ones (slow iterator) and by twos (fast iterator). If there is a loop the fast iterator will go around that loop twice as fast as the slow iterator. The fast iterator will lap the slow iterator within a single pass through the cycle. Detecting a loop is then just detecting that the slow iterator has been lapped by the fast iterator.
+
+```javascript
+hasloop = function (head) {
+    var slow = head;
+    var fast1 = head;
+    var fast2 = head;
+
+    do {
+        fast1 = fast2 && fast2.next;
+        fast2 = fast1 && fast1.next;
+        if (slow === fast1 || slow === fast2) {
+            return true;
+        }
+        slow = slow.next;
+    } while (slow && fast1 && fast2);
+    return false;
+};
+```
+
+This solution is "Floyd's Cycle-Finding Algorithm" as published in "Non-deterministic Algorithms" by Robert W. Floyd in 1967. It is also called "The Tortoise and the Hare Algorithm".

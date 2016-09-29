@@ -96,7 +96,7 @@ describe("Keep a hash set of all nodes seen so far", function () {
  * O(n) time complexity
  *
  * Doubly linked lists make it easy to tell if there is a loop.
- * If you encounter any node that doesn’t link to the last node
+ * If you encounter any node that doesn't link to the last node
  * you visited, you know that there are two nodes linking to
  * that node. Because the back links could be initially messed
  * up in some other way, this algorithm is only correct if you
@@ -173,7 +173,7 @@ describe("Check the Entire List So Far", function () {
  *
  * O(n) time complexity
  *
- * If you reverse the list, and remember the inital node, you will
+ * If you reverse the list, and remember the initial node, you will
  * know that there is a cycle if you get back to the first node.
  * While efficient, this solution changes the list. Reversing the
  * list twice would put the list back in its initial state, however
@@ -233,7 +233,7 @@ describe("Reverse the list", function () {
  * return false;
  *
  *
- * This algorithm relies on being able to see memomory address information.
+ * This algorithm relies on being able to see memory address information.
  * This is not possible to implement in some programming languages such as
  * Javascript that do not make this information available. So I didn't
  * implement this algorithm. It is likely that the entire list will be allocated
@@ -253,8 +253,8 @@ describe("Reverse the list", function () {
  * time before resetting it again.
  *
  *
- * This solution is O(n) because sinceScale grows linearly with the number of
- * calls to next(). Once sinceScale is greater than the size of the loop, another
+ * This solution is O(n) because `sinceScale` grows linearly with the number of
+ * calls to next(). Once `sinceScale` is greater than the size of the loop, another
  * n calls to next() may be required to detect the loop. This solution requires
  * up to 3 traversals of the list.
  *
@@ -299,9 +299,10 @@ describe("Catch Larger and Larger Loops", function () {
  * then just detecting that the slow iterator has been lapped by the fast
  * iterator.
  *
- * This solution is “Floyd’s Cycle-Finding Algorithm” as published in
+ *
+ * This solution is "Floyd's Cycle-Finding Algorithm" as published in
  * "Non-deterministic Algorithms" by Robert W. Floyd in 1967. It is also
- * called “The Tortoise and the Hare Algorithm”.
+ * called "The Tortoise and the Hare Algorithm".
  */
 describe("Catch Loops in Two Passes", function () {
     "use strict";
