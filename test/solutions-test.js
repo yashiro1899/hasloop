@@ -288,7 +288,6 @@ describe("Catch Larger and Larger Loops", function () {
         };
     });
     its();
-    after(reload);
 });
 
 /**
@@ -328,5 +327,4 @@ describe("Catch Loops in Two Passes", function () {
         };
     });
     its();
-    after(reload);
 });
