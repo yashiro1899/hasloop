@@ -32,5 +32,6 @@ cities.append("Zhangye, Gansu");
 cities.append("Jiuquan, Gansu");
 cities.append("Hami, Xinjiang");
 cities.append("Ürümqi, Xinjiang");
+cities.append("Khorgas, Xinjiang");
 
 module.exports = cities;
