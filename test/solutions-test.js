@@ -1,7 +1,7 @@
 /*global
     describe it before after
 */
-var G4 = require("./G4");   // with loop
+var G4 = require("./G4"); // with loop
 var G30 = require("./G30"); // without loop
 var G98 = require("./G98"); // with full loop where the last node links to the first
 var hasloop;
@@ -231,4 +231,50 @@ describe("Reverse the list", function () {
  *     if (max - min < nodes) return true;
  * }
  * return false;
+ *
+ *
+ * This algorithm relies on being able to see memomory address information.
+ * This is not possible to implement in some programming languages such as
+ * Javascript that do not make this information available. It is likely that
+ * the entire list will be allocated close together in memory. In such a case
+ * the implementation will run close to the running time of the length of the
+ * list. However, if the nodes in the list are allocated over a large memory
+ * space, the runtime of this algorithm could be much greater than some of
+ * the best solutions.
  */
+
+/**
+ * Catch Larger and Larger Loops
+ *
+ * O(n) time complexity
+ *
+ * Always store some node to check. Occasionally reset this node to avoid the
+ * "Detect Only Full Loops" problem. When resetting it, double the amount of
+ * time before resetting it again.
+ */
+describe("Catch Larger and Larger Loops", function () {
+    "use strict";
+    before(function () {
+        hasloop = function (head) {
+            var current = head;
+            var check = null;
+            var since = 0;
+            var sinceScale = 2;
+            do {
+                if (check === current) {
+                    return true;
+                }
+                if (since >= sinceScale) {
+                    check = current;
+                    since = 0;
+                    sinceScale *= 2;
+                }
+                since += 1;
+                current = current.next;
+            } while (current);
+            return false;
+        };
+    });
+    its();
+    after(reload);
+});
