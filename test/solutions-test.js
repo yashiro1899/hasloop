@@ -251,6 +251,14 @@ describe("Reverse the list", function () {
  * Always store some node to check. Occasionally reset this node to avoid the
  * "Detect Only Full Loops" problem. When resetting it, double the amount of
  * time before resetting it again.
+ *
+ *
+ * This solution is O(n) because sinceScale grows linearly with the number of
+ * calls to next(). Once sinceScale is greater than the size of the loop, another
+ * n calls to next() may be required to detect the loop. This solution requires
+ * up to 3 traversals of the list.
+ *
+ * This solution was devised by Stephen Ostermiller and proven O(n) by Daniel Martin.
  */
 describe("Catch Larger and Larger Loops", function () {
     "use strict";
@@ -272,6 +280,45 @@ describe("Catch Larger and Larger Loops", function () {
                 since += 1;
                 current = current.next;
             } while (current);
+            return false;
+        };
+    });
+    its();
+    after(reload);
+});
+
+/**
+ * Catch Loops in Two Passes
+ *
+ * O(n) time complexity
+ *
+ * Simultaneously go through the list by ones (slow iterator) and by twos
+ * (fast iterator). If there is a loop the fast iterator will go around that
+ * loop twice as fast as the slow iterator. The fast iterator will lap the
+ * slow iterator within a single pass through the cycle. Detecting a loop is
+ * then just detecting that the slow iterator has been lapped by the fast
+ * iterator.
+ *
+ * This solution is “Floyd’s Cycle-Finding Algorithm” as published in
+ * "Non-deterministic Algorithms" by Robert W. Floyd in 1967. It is also
+ * called “The Tortoise and the Hare Algorithm”.
+ */
+describe("Catch Loops in Two Passes", function () {
+    "use strict";
+    before(function () {
+        hasloop = function (head) {
+            var slow = head;
+            var fast1 = head;
+            var fast2 = head;
+
+            do {
+                fast1 = fast2 && fast2.next;
+                fast2 = fast1 && fast1.next;
+                if (slow === fast1 || slow === fast2) {
+                    return true;
+                }
+                slow = slow.next;
+            } while (slow && fast1 && fast2);
             return false;
         };
     });
