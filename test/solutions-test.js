@@ -27,11 +27,11 @@ describe("Mark Each Node", function () {
             return false;
         };
     });
-    it("should return true when input is G4", function () {
+    it("should return true when loop is present", function () {
         hasloop(G4.head)
             .should.be.equal(true);
     });
-    it("should return false when input is G30", function () {
+    it("should return false when loop is not present", function () {
         hasloop(G30.head)
             .should.be.equal(false);
     });
@@ -66,11 +66,11 @@ describe("Keep a hash set of all nodes seen so far", function () {
             return false;
         };
     });
-    it("should return true when input is G4", function () {
+    it("should return true when loop is present", function () {
         hasloop(G4.head)
             .should.be.equal(true);
     });
-    it("should return false when input is G30", function () {
+    it("should return false when loop is not present", function () {
         hasloop(G30.head)
             .should.be.equal(false);
     });
@@ -102,11 +102,11 @@ describe("Use a doubly linked list", function () {
             var current = head;
             var previous = null;
             do {
-                if (previous && current.previous && previous !== current.previous) {
+                if (previous && current.previous !== undefined && previous !== current.previous) {
                     return true;
                 }
                 if (current.previous === undefined) {
-                    current.previous = current;
+                    current.previous = previous;
                 }
                 previous = current;
                 current = current.next;
@@ -114,11 +114,54 @@ describe("Use a doubly linked list", function () {
             return false;
         };
     });
-    it("should return true when input is G4", function () {
+    it("should return true when loop is present", function () {
         hasloop(G4.head)
             .should.be.equal(true);
     });
-    it("should return false when input is G30", function () {
+    it("should return false when loop is not present", function () {
+        hasloop(G30.head)
+            .should.be.equal(false);
+    });
+});
+
+/**
+ * Check the Entire List So Far
+ *
+ * O(n^2) time complexity
+ *
+ * For each node, assume that the portion of the list examined
+ * so for has no loops and check to see if the next node creates
+ * a loop by iterating again over the entire list up to that point.
+ */
+describe("Check the Entire List So Far", function () {
+    "use strict";
+    before(function () {
+        hasloop = function (head) {
+            var current = head.next;
+            var i = 0;
+            var check;
+            var j;
+            do {
+                check = head;
+                j = 0;
+                do {
+                    if (check === current) {
+                        return true;
+                    }
+                    j += 1;
+                    check = check.next;
+                } while (j < i && check);
+                i += 1;
+                current = current.next;
+            } while (current);
+            return false;
+        };
+    });
+    it("should return true when loop is present", function () {
+        hasloop(G4.head)
+            .should.be.equal(true);
+    });
+    it("should return false when loop is not present", function () {
         hasloop(G30.head)
             .should.be.equal(false);
     });
