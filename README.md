@@ -1,5 +1,8 @@
 # Finding a Loop in a Singly Linked List
 
+[![build status][travis-image]][travis-url]
+
+
 Reference: [http://blog.ostermiller.org/find-loop-singly-linked-list](http://blog.ostermiller.org/find-loop-singly-linked-list 'reference')
 
 Implements most of cases in the article above by Javascript.
@@ -226,3 +229,7 @@ hasloop = function (head) {
 ```
 
 This solution is "Floyd's Cycle-Finding Algorithm" as published in "Non-deterministic Algorithms" by Robert W. Floyd in 1967. It is also called "The Tortoise and the Hare Algorithm".
+
+
+[travis-image]: https://img.shields.io/travis/yashiro1899/hasloop/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/yashiro1899/hasloop
