@@ -1,9 +1,9 @@
 /*global
     describe it before
 */
-var head_G4 = require("./G4"); // with loop
-var head_G30 = require("./G30"); // without loop
-var head_G98 = require("./G98"); // with full loop where the last node links to the first
+const head_G4 = require("./G4"); // with loop
+const head_G30 = require("./G30"); // without loop
+const head_G98 = require("./G98"); // with full loop where the last node links to the first
 var hasloop;
 
 function its() {
