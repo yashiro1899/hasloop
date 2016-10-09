@@ -174,4 +174,4 @@ suite.add("Mark Each Node\n\t", function () {
         console.log();
         console.log(`Fastest is ${fastest}`);
     })
-    .run({async: true});
+    .run();
