@@ -1,33 +1,23 @@
 /*global
-    describe it before after
+    describe it before
 */
-var G4 = require("./G4"); // with loop
-var G30 = require("./G30"); // without loop
-var G98 = require("./G98"); // with full loop where the last node links to the first
+var head_G4 = require("./G4"); // with loop
+var head_G30 = require("./G30"); // without loop
+var head_G98 = require("./G98"); // with full loop where the last node links to the first
 var hasloop;
-
-function reload() {
-    "use strict";
-    delete require.cache[require.resolve("./G4")];
-    delete require.cache[require.resolve("./G30")];
-    delete require.cache[require.resolve("./G98")];
-    G4 = require("./G4");
-    G30 = require("./G30");
-    G98 = require("./G98");
-}
 
 function its() {
     "use strict";
     it("should return true when loop is present", function () {
-        hasloop(G4.head)
+        hasloop(head_G4())
             .should.be.equal(true);
     });
     it("should return true when full loop is present", function () {
-        hasloop(G98.head)
+        hasloop(head_G98())
             .should.be.equal(true);
     });
     it("should return false when loop is not present", function () {
-        hasloop(G30.head)
+        hasloop(head_G30())
             .should.be.equal(false);
     });
 }
@@ -55,7 +45,6 @@ describe("Mark Each Node", function () {
         };
     });
     its();
-    after(reload);
 });
 
 /**
@@ -129,7 +118,6 @@ describe("Use a doubly linked list", function () {
         };
     });
     its();
-    after(reload);
 });
 
 /**
@@ -203,7 +191,6 @@ describe("Reverse the list", function () {
         };
     });
     its();
-    after(reload);
 });
 
 /**

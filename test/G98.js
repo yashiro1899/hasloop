@@ -13,23 +13,26 @@
  */
 const LList = require("../lib/linked_list");
 
-var cities = new LList();
-var hk;
-var cm;
+module.exports = function() {
+    "use strict";
+    var cities = new LList();
+    var hk;
+    var cm;
 
-// The expressway passes through the following cities:
-hk = cities.append("Haikou");
-cities.append("Ding'an County");
-cities.append("Qionghai");
-cities.append("Wanning");
-cities.append("Lingshui Li Autonomous County");
-cities.append("Sanya");
-cities.append("Ledong Li Autonomous County");
-cities.append("Dongfang");
-cities.append("Changjiang Li Autonomous County");
-cities.append("Danzhou");
-cities.append("Lingao County");
-cm = cities.append("Chengmai County");
-cm.next = hk;
+    // The expressway passes through the following cities:
+    hk = cities.append("Haikou");
+    cities.append("Ding'an County");
+    cities.append("Qionghai");
+    cities.append("Wanning");
+    cities.append("Lingshui Li Autonomous County");
+    cities.append("Sanya");
+    cities.append("Ledong Li Autonomous County");
+    cities.append("Dongfang");
+    cities.append("Changjiang Li Autonomous County");
+    cities.append("Danzhou");
+    cities.append("Lingao County");
+    cm = cities.append("Chengmai County");
+    cm.next = hk;
 
-module.exports = cities;
+    return cities.head;
+};

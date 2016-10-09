@@ -15,23 +15,26 @@
  */
 const LList = require("../lib/linked_list");
 
-var cities = new LList();
+module.exports = function() {
+    "use strict";
+    var cities = new LList();
 
-// The expressway passes through the following cities:
-cities.append("Lianyungang, Jiangsu");
-cities.append("Xuzhou, Jiangsu");
-cities.append("Kaifeng, Henan");
-cities.append("Zhengzhou, Henan");
-cities.append("Weinan, Shaanxi");
-cities.append("Xi'an, Shaanxi");
-cities.append("Baoji, Shaanxi");
-cities.append("Tianshui, Gansu");
-cities.append("Lanzhou, Gansu");
-cities.append("Wuwei, Gansu");
-cities.append("Zhangye, Gansu");
-cities.append("Jiuquan, Gansu");
-cities.append("Hami, Xinjiang");
-cities.append("Ürümqi, Xinjiang");
-cities.append("Khorgas, Xinjiang");
+    // The expressway passes through the following cities:
+    cities.append("Lianyungang, Jiangsu");
+    cities.append("Xuzhou, Jiangsu");
+    cities.append("Kaifeng, Henan");
+    cities.append("Zhengzhou, Henan");
+    cities.append("Weinan, Shaanxi");
+    cities.append("Xi'an, Shaanxi");
+    cities.append("Baoji, Shaanxi");
+    cities.append("Tianshui, Gansu");
+    cities.append("Lanzhou, Gansu");
+    cities.append("Wuwei, Gansu");
+    cities.append("Zhangye, Gansu");
+    cities.append("Jiuquan, Gansu");
+    cities.append("Hami, Xinjiang");
+    cities.append("Ürümqi, Xinjiang");
+    cities.append("Khorgas, Xinjiang");
 
-module.exports = cities;
+    return cities.head;
+};

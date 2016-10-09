@@ -15,31 +15,34 @@
  */
 const LList = require("../lib/linked_list");
 
-var cities = new LList();
-var gz;
-var mo;
+module.exports = function () {
+    "use strict";
+    var cities = new LList();
+    var gz;
+    var mo;
 
-// The expressway passes through the following cities:
-cities.append("Beijing");
-cities.append("Baoding, Hebei");
-cities.append("Shijiazhuang, Hebei");
-cities.append("Handan, Hebei");
-cities.append("Xinxiang, Henan");
-cities.append("Zhengzhou, Henan");
-cities.append("Luohe, Henan");
-cities.append("Xinyang, Henan");
-cities.append("Wuhan, Hubei");
-cities.append("Xianning, Hubei");
-cities.append("Yueyang, Hunan");
-cities.append("Changsha, Hunan");
-cities.append("Zhuzhou, Hunan");
-cities.append("Hengyang, Hunan");
-cities.append("Chenzhou, Hunan");
-cities.append("Shaoguan, Guangdong");
-gz = cities.append("Guangzhou, Guangdong");
-cities.append("Shenzhen, Guangdong");
-cities.append("Hong Kong");
-mo = cities.append("Macau");
-mo.next = gz;
+    // The expressway passes through the following cities:
+    cities.append("Beijing");
+    cities.append("Baoding, Hebei");
+    cities.append("Shijiazhuang, Hebei");
+    cities.append("Handan, Hebei");
+    cities.append("Xinxiang, Henan");
+    cities.append("Zhengzhou, Henan");
+    cities.append("Luohe, Henan");
+    cities.append("Xinyang, Henan");
+    cities.append("Wuhan, Hubei");
+    cities.append("Xianning, Hubei");
+    cities.append("Yueyang, Hunan");
+    cities.append("Changsha, Hunan");
+    cities.append("Zhuzhou, Hunan");
+    cities.append("Hengyang, Hunan");
+    cities.append("Chenzhou, Hunan");
+    cities.append("Shaoguan, Guangdong");
+    gz = cities.append("Guangzhou, Guangdong");
+    cities.append("Shenzhen, Guangdong");
+    cities.append("Hong Kong");
+    mo = cities.append("Macau");
+    mo.next = gz;
 
-module.exports = cities;
+    return cities.head;
+};
