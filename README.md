@@ -1,6 +1,7 @@
 # Finding a Loop in a Singly Linked List
 
 [![build status][travis-image]][travis-url]
+[![test coverage][codecov-image]][codecov-url]
 
 
 Reference: [http://blog.ostermiller.org/find-loop-singly-linked-list](http://blog.ostermiller.org/find-loop-singly-linked-list 'reference')
@@ -233,3 +234,5 @@ This solution is "Floyd's Cycle-Finding Algorithm" as published in "Non-determin
 
 [travis-image]: https://img.shields.io/travis/yashiro1899/hasloop/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/yashiro1899/hasloop
+[codecov-image]: https://img.shields.io/codecov/c/github/yashiro1899/hasloop.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/yashiro1899/hasloop?branch=master
